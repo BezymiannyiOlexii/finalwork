@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect
 from connection_file import db, app
 from classes_file import Shops
+from sqlalchemy.sql import select
 
 
 @app.route('/')
@@ -28,7 +29,13 @@ def shops():
             return redirect("/shops")
     else:
         table = Shops.query.order_by(Shops.id_shop).all()
+        #table = Shops.query.filter_by(id_shop=2).all()
         return render_template("shops.html", table=table)
+
+
+@app.route('/shop-choice', methods =['POST'])
+def shop_choice():
+    return "Here: " + request.form['id_shop'] + request.form['type_shop']
 
 @app.route('/shops/<int:id>/edit', methods=['POST', 'GET'])
 def edit_shop(id):
