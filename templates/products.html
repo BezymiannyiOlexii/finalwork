@@ -12,8 +12,40 @@
 <div class="container">
 
 
-    <form action="/shop-choice" method="POST" id="data">
+    <form action="/product-choice" method="POST" id="data">
         ID:
+        <select name="id_product">
+            <option value="any" label = "Anything">
+                {% for el in table %}
+            <option value={{el.id_product}}  label = {{el.id_product}}>
+                {% endfor %}
+        </select>
+
+        <br>Название:
+        <select name="name_product">
+            <option value="any" label = "Anything">
+                {% for el in table %}
+            <option value={{el.name_product}}  label = {{el.name_product}}>
+                {% endfor %}
+        </select>
+
+        <br>Вид:
+        <select name="type_product">
+            <option value="any" label = "Anything">
+                {% for el in table %}
+            <option value={{el.type_product}}  label = {{el.type_product}}>
+                {% endfor %}
+        </select>
+
+        <br>Количество:
+        <select name="amount_product">
+            <option value="any" label = "Anything">
+                {% for el in table %}
+            <option value={{el.amount_product}}  label = {{el.amount_product}}>
+                {% endfor %}
+        </select>
+
+        <br>ID Магазина:
         <select name="id_shop">
             <option value="any" label = "Anything">
                 {% for el in table %}
@@ -21,35 +53,11 @@
                 {% endfor %}
         </select>
 
-        <br>Тип Магазина:
-        <select name="type_shop">
+        <br>Цена:
+        <select name="price_product">
             <option value="any" label = "Anything">
                 {% for el in table %}
-            <option value={{el.type_shop}}  label = {{el.type_shop}}>
-                {% endfor %}
-        </select>
-
-        <br>Площадь:
-        <select name="shops_area">
-            <option value="any" label = "Anything">
-                {% for el in table %}
-            <option value={{el.shops_area}}  label = {{el.shops_area}}>
-                {% endfor %}
-        </select>
-
-        <br>Количество залов:
-        <select name="hall_count">
-            <option value="any" label = "Anything">
-                {% for el in table %}
-            <option value={{el.hall_count}}  label = {{el.hall_count}}>
-                {% endfor %}
-        </select>
-
-        <br>Количество прилавков:
-        <select name="stall_count">
-            <option value="any" label = "Anything">
-                {% for el in table %}
-            <option value={{el.stall_count}}  label = {{el.stall_count}}>
+            <option value={{el.price_product}}  label = {{el.price_product}}>
                 {% endfor %}
         </select><br>
         <input type="submit" name="btn btn-success" value="Show"><br>
@@ -79,15 +87,15 @@
             <td>{{ el.id_shop }}</td>
             <td>{{ el.price_product }}</td>
             <td>
-                <a href="/shops?id={{el.id_shop}}&action=del" class="btn btn-danger">Delete</a>
+                <a href="/products?id={{el.id_product}}&action=del" class="btn btn-danger">Delete</a>
             </td>
             <td>
-                <a href="/shops/{{el.id_shop}}/edit" class="btn btn-warning">Edit</a>
+                <a href="/products/{{el.id_product}}/edit" class="btn btn-warning">Edit</a>
             </td>
         </tr>
         {% endfor %}
     </table>
-    <a href="/shops/create" class="btn btn-success">Add</a>
+    <a href="/products/create" class="btn btn-success">Add</a>
 </div>
 </body>
 </html>

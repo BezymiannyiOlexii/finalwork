@@ -57,7 +57,9 @@ def shops():
 def shop_choice():
     '''При выборе елеменетов для вывода эта функция принимает значения выпадающего меню методом POST
     и возвращает для обработки методом GET, через параметры ссылки в /shops '''
-    return redirect(f"/shops?action=choice&id_shop={request.form['id_shop']}&type_shop={request.form['type_shop']}&shops_area={request.form['shops_area']}&hall_count={request.form['hall_count']}&stall_count={request.form['stall_count']}")
+    return redirect(f"/shops?action=choice&id_shop={request.form['id_shop']}"
+                    f"&type_shop={request.form['type_shop']}&shops_area={request.form['shops_area']}"
+                    f"&hall_count={request.form['hall_count']}&stall_count={request.form['stall_count']}")
 
 @app.route('/shops/<int:id>/edit', methods=['POST', 'GET'])
 def edit_shop(id):
