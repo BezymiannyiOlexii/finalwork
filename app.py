@@ -4,6 +4,9 @@ from classes_file import Shops
 from sqlalchemy.sql import select
 
 
+#def fromSQL_to_Alchemy(lst, clas):
+
+
 @app.route('/')
 def index():
     try:
@@ -28,8 +31,13 @@ def shops():
         else:
             return redirect("/shops")
     else:
-        table = Shops.query.order_by(Shops.id_shop).all()
-        #table = Shops.query.filter_by(id_shop=2).all()
+        #table = Shops.query.order_by(Shops.id_shop).all()
+        #table = Shops.query.filter_by(type_shop="Магазин").filter_by(id_shop=1).all()
+        #table = Shops.query.all()
+        #table = db.session.execute('SELECT shops.id_shop AS shops_id_shop, shops.type_shop AS shops_type_shop, shops.shops_area AS shops_shops_area, shops.hall_count AS shops_hall_count, shops.stall_count AS shops_stall_count FROM shops')
+        #table = db.session.query(Shops).filter(Shops.id_shop == 2)
+        str = "'Магазин'"
+        table = db.session.execute(f"SELECT * from Shops WHERE type_shop={str}").fetchall()
         return render_template("shops.html", table=table)
 
 
