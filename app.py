@@ -36,8 +36,9 @@ def shops():
         #table = Shops.query.all()
         #table = db.session.execute('SELECT shops.id_shop AS shops_id_shop, shops.type_shop AS shops_type_shop, shops.shops_area AS shops_shops_area, shops.hall_count AS shops_hall_count, shops.stall_count AS shops_stall_count FROM shops')
         #table = db.session.query(Shops).filter(Shops.id_shop == 2)
-        str = "'Магазин'"
-        table = db.session.execute(f"SELECT * from Shops WHERE type_shop={str}").fetchall()
+        id_lst = (1, 2)
+        table = db.session.execute(f"SELECT * from Shops WHERE id_shop in {id_lst}").fetchall()
+        print(table)
         return render_template("shops.html", table=table)
 
 
