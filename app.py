@@ -1,5 +1,6 @@
-from shops import *
 from products import *
+from shops import *
+from orders import *
 
 
 @app.route('/')

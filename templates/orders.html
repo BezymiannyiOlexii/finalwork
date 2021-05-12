@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}
+Товары
+{% endblock %}
+{% block body %}
+<form action="/order-choice" method="POST" id="data">
+    ID - продукта:
+    <select name="id_product" class="form-select form-select-sm">
+        <option value="any" label = "Anything">
+            {% for el in table %}
+        <option value={{el.id_product}}  label = {{el.id_product}}>
+            {% endfor %}
+    </select>
+
+    <br>Номер заказа:
+    <select name="numb_order" class="form-select form-select-sm">
+        <option value="any" label = "Anything">
+            {% for el in table %}
+        <option value={{el.numb_order}}  label = {{el.numb_order}}>
+            {% endfor %}
+    </select>
+
+    <br>Количество:
+    <select name="amount_order" class="form-select form-select-sm">
+        <option value="any" label = "Anything">
+            {% for el in table %}
+        <option value={{el.amount_order}}  label = {{el.amount_order}}>
+            {% endfor %}
+    </select>
+
+    <br>Поставщик:
+    <select name="provider_order" class="form-select form-select-sm">
+        <option value="any" label = "Anything">
+            {% for el in table %}
+        <option value={{el.provider_order}}  label = {{el.provider_order}}>
+            {% endfor %}
+    </select>
+
+    <br>Цена:
+    <select name="price_order" class="form-select form-select-sm">
+        <option value="any" label = "Anything">
+            {% for el in table %}
+        <option value={{el.price_order}}  label = {{el.price_order}}>
+            {% endfor %}
+    </select>
+
+    <br>Дата:
+    <select name="date_order" class="form-select form-select-sm">
+        <option value="any" label = "Anything">
+            {% for el in table %}
+        <option value={{el.date_order}}  label = {{el.date_order}}>
+            {% endfor %}
+    </select><br>
+    <input type="submit" name="btn btn-success" value="Show"><br>
+</form>
+
+
+
+
+
+<table border="1" width="100%" cellpadding="5">
+    <tr>
+        <th>ID-Заказа</th>
+        <th>ID-Товара</th>
+        <th>Номер Заказа</th>
+        <th>Количество</th>
+        <th>Поставщик</th>
+        <th>Цена за ед</th>
+        <th>Дата</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for el in table %}
+    <tr>
+        <td>{{ el.id_order }}</td>
+        <td>{{ el.id_product }}</td>
+        <td>{{ el.numb_order }}</td>
+        <td>{{ el.amount_order }}</td>
+        <td>{{ el.provider_order }}</td>
+        <td>{{ el.price_order }}</td>
+        <td>{{ el.date_order }}</td>
+        <td>
+            <a href="/orders?id={{el.id_product}}&action=del" class="btn btn-danger">Delete</a>
+        </td>
+        <td>
+            <a href="/orders/{{el.id_order}}/edit" class="btn btn-warning">Edit</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/orders/create" class="btn btn-success">Add</a><br><br>
+
+<h4>Выберете наименьшее число поставок от поставщика и тип товара</h4>
+<form action="/orders/first" method="post">
+    <input type="number" name="numb" id="numb" placeholder="Не менше заданного"><br>
+    <input type="text" name="type" id="type" placeholder="Вид Товара"><br>
+    <input type="submit" name="btn btn-success" value="Гатовенько">
+</form>
+{% endblock %}

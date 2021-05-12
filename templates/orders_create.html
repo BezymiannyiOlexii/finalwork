@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+Добавление заказа
+{% endblock %}
+{% block body %}
+<h1>Добавление Заказа</h1>
+<form action="/orders/create" method="post">
+    <input type="number" name="id_product" id="id_product" placeholder="ID продукта"><br>
+    <input type="number" name="numb_order" id="numb_order" placeholder="Номер Заказа"><br>
+    <input type="number" name="amount_order" id="amount_order" placeholder="К-во продуктов"><br>
+    <input type="text"   name="provider_order" id="provider_order" placeholder="Поставщик"><br>
+    <input type="number" name="price_order" id="price_order" placeholder="Цена за продукт"><br>
+    <input type="number" name="date_order" id="date_order" placeholder="Дата"><br>
+    <input type="submit" name="btn btn-success" value="Гатовенько">
+</form>
+{% endblock %}

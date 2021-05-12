@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+Редактирование заказа
+{% endblock %}
+{% block body %}
+<h1>Редактирование Заказа</h1>
+<form method="post">
+    <input type="number" name="id_product" id="id_product" value="{{order.id_product}}" placeholder="ID продукта"><br>
+    <input type="number" name="numb_order" id="numb_order" value="{{order.numb_order}}" placeholder="Номер Заказа"><br>
+    <input type="number" name="amount_order" id="amount_order" value="{{order.amount_order}}" placeholder="К-во продуктов"><br>
+    <input type="text"   name="provider_order" id="provider_order" value="{{order.provider_order}}" placeholder="Поставщик"><br>
+    <input type="number" name="price_order" id="price_order" value="{{order.price_order}}" placeholder="Цена за продукт"><br>
+    <input type="number" name="date_order" id="date_order" value="{{order.date_order}}" placeholder="Дата"><br>
+    <input type="submit" name="btn btn-success" value="Гатовенько">
+</form>
+{% endblock %}

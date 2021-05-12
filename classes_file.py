@@ -21,7 +21,18 @@ class Products(db.Model):
     amount_product = db.Column(db.Integer, nullable=False)
     id_shop = db.Column(db.Integer, nullable=False)
     price_product = db.Column(db.Integer, default=0)
-    # date = db.Column(db.DataTime, default=datetime.utcnow)
 
     def __repr__(self):
         return 'Products %r' % self.id_product
+
+class Orders(db.Model):
+    id_order = db.Column(db.Integer, primary_key=True)
+    id_product = db.Column(db.Integer, nullable=False)
+    numb_order = db.Column(db.Integer, nullable=False)
+    amount_order = db.Column(db.Integer, nullable=False)
+    provider_order = db.Column(db.String(20), nullable=False)
+    price_order = db.Column(db.Integer, default=0)
+    date_order = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return 'Order %r' % self.id_order
