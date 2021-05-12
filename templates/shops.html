@@ -13,22 +13,46 @@
 
 
 <form action="/shop-choice" method="POST" id="data">
-        ID:<br>
+        ID:
             <select name="id_shop">
-                <option value=" " label = "Anything">
+                <option value="any" label = "Anything">
                 {% for el in table %}
                 <option value={{el.id_shop}}  label = {{el.id_shop}}>
                 {% endfor %}
             </select>
 
-        <br>Тип Магазина:<br>
+        <br>Тип Магазина:
         <select name="type_shop">
-            <option value=" " label = "Abything">
+            <option value="any" label = "Anything">
             {% for el in table %}
             <option value={{el.type_shop}}  label = {{el.type_shop}}>
             {% endfor %}
         </select>
-    <input type="submit" name="btn btn-success" value="Гатовенько">
+
+        <br>Площадь:
+        <select name="shops_area">
+            <option value="any" label = "Anything">
+                {% for el in table %}
+            <option value={{el.shops_area}}  label = {{el.shops_area}}>
+                {% endfor %}
+        </select>
+
+        <br>Количество залов:
+        <select name="hall_count">
+            <option value="any" label = "Anything">
+                {% for el in table %}
+            <option value={{el.hall_count}}  label = {{el.hall_count}}>
+                {% endfor %}
+        </select>
+
+        <br>Количество прилавков:
+        <select name="stall_count">
+            <option value="any" label = "Anything">
+                {% for el in table %}
+            <option value={{el.stall_count}}  label = {{el.stall_count}}>
+                {% endfor %}
+        </select><br>
+    <input type="submit" name="btn btn-success" value="Show"><br>
 </form>
 
 
