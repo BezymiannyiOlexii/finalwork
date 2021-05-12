@@ -5,7 +5,7 @@ from classes_file import Products
 @app.route('/products')
 def products():
     table = Products.query.order_by(Products.id_product).all()
-    return "He-he"
+    return render_template("products.html", table=table)
 
 @app.route('/products/create', methods=['POST', 'GET'])
 def create_product():

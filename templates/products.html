@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="container">
+
+
+    <form action="/shop-choice" method="POST" id="data">
+        ID:
+        <select name="id_shop">
+            <option value="any" label = "Anything">
+                {% for el in table %}
+            <option value={{el.id_shop}}  label = {{el.id_shop}}>
+                {% endfor %}
+        </select>
+
+        <br>Тип Магазина:
+        <select name="type_shop">
+            <option value="any" label = "Anything">
+                {% for el in table %}
+            <option value={{el.type_shop}}  label = {{el.type_shop}}>
+                {% endfor %}
+        </select>
+
+        <br>Площадь:
+        <select name="shops_area">
+            <option value="any" label = "Anything">
+                {% for el in table %}
+            <option value={{el.shops_area}}  label = {{el.shops_area}}>
+                {% endfor %}
+        </select>
+
+        <br>Количество залов:
+        <select name="hall_count">
+            <option value="any" label = "Anything">
+                {% for el in table %}
+            <option value={{el.hall_count}}  label = {{el.hall_count}}>
+                {% endfor %}
+        </select>
+
+        <br>Количество прилавков:
+        <select name="stall_count">
+            <option value="any" label = "Anything">
+                {% for el in table %}
+            <option value={{el.stall_count}}  label = {{el.stall_count}}>
+                {% endfor %}
+        </select><br>
+        <input type="submit" name="btn btn-success" value="Show"><br>
+    </form>
+
+
+
+
+
+    <table border="1" width="100%" cellpadding="5">
+        <tr>
+            <th>ID-продукта</th>
+            <th>Название продукта</th>
+            <th>Вид продукта</th>
+            <th>Количество единиц</th>
+            <th>ID-Магазина</th>
+            <th>Цена Продукта</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for el in table %}
+        <tr>
+            <td>{{ el.id_product }}</td>
+            <td>{{ el.name_product }}</td>
+            <td>{{ el.type_product }}</td>
+            <td>{{ el.amount_product }}</td>
+            <td>{{ el.id_shop }}</td>
+            <td>{{ el.price_product }}</td>
+            <td>
+                <a href="/shops?id={{el.id_shop}}&action=del" class="btn btn-danger">Delete</a>
+            </td>
+            <td>
+                <a href="/shops/{{el.id_shop}}/edit" class="btn btn-warning">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/shops/create" class="btn btn-success">Add</a>
+</div>
+</body>
+</html>
