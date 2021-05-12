@@ -5,7 +5,7 @@
 {% block body %}
     <form action="/product-choice" method="POST" id="data">
         ID:
-        <select name="id_product">
+        <select name="id_product" class="form-select form-select-sm">
             <option value="any" label = "Anything">
                 {% for el in table %}
             <option value={{el.id_product}}  label = {{el.id_product}}>
@@ -13,7 +13,7 @@
         </select>
 
         <br>Название:
-        <select name="name_product">
+        <select name="name_product" class="form-select form-select-sm">
             <option value="any" label = "Anything">
                 {% for el in table %}
             <option value={{el.name_product}}  label = {{el.name_product}}>
@@ -21,7 +21,7 @@
         </select>
 
         <br>Вид:
-        <select name="type_product">
+        <select name="type_product" class="form-select form-select-sm">
             <option value="any" label = "Anything">
                 {% for el in table %}
             <option value={{el.type_product}}  label = {{el.type_product}}>
@@ -29,7 +29,7 @@
         </select>
 
         <br>Количество:
-        <select name="amount_product">
+        <select name="amount_product" class="form-select form-select-sm">
             <option value="any" label = "Anything">
                 {% for el in table %}
             <option value={{el.amount_product}}  label = {{el.amount_product}}>
@@ -37,7 +37,7 @@
         </select>
 
         <br>ID Магазина:
-        <select name="id_shop">
+        <select name="id_shop" class="form-select form-select-sm">
             <option value="any" label = "Anything">
                 {% for el in table %}
             <option value={{el.id_shop}}  label = {{el.id_shop}}>
@@ -45,7 +45,7 @@
         </select>
 
         <br>Цена:
-        <select name="price_product">
+        <select name="price_product" class="form-select form-select-sm">
             <option value="any" label = "Anything">
                 {% for el in table %}
             <option value={{el.price_product}}  label = {{el.price_product}}>

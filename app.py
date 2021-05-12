@@ -4,10 +4,7 @@ from products import *
 
 @app.route('/')
 def index():
-    try:
-        return f'ну че погнали ебана в рот!{request.args["id"]}'
-    except:
-        return redirect("/?id=nrejnoren")
+    return render_template("main_page.html")
 
 
 if __name__ == "__main__":

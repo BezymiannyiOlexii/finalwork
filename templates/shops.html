@@ -7,7 +7,7 @@
 
 <form action="/shop-choice" method="POST" id="data">
         ID:
-            <select name="id_shop">
+            <select name="id_shop" class="form-select form-select-sm">
                 <option value="any" label = "Anything">
                 {% for el in table %}
                 <option value={{el.id_shop}}  label = {{el.id_shop}}>
@@ -15,7 +15,7 @@
             </select>
 
         <br>Тип Магазина:
-        <select name="type_shop">
+        <select name="type_shop" class="form-select form-select-sm">
             <option value="any" label = "Anything">
             {% for el in table %}
             <option value={{el.type_shop}}  label = {{el.type_shop}}>
@@ -23,7 +23,7 @@
         </select>
 
         <br>Площадь:
-        <select name="shops_area">
+        <select name="shops_area" class="form-select form-select-sm">
             <option value="any" label = "Anything">
                 {% for el in table %}
             <option value={{el.shops_area}}  label = {{el.shops_area}}>
@@ -31,7 +31,7 @@
         </select>
 
         <br>Количество залов:
-        <select name="hall_count">
+        <select name="hall_count" class="form-select form-select-sm">
             <option value="any" label = "Anything">
                 {% for el in table %}
             <option value={{el.hall_count}}  label = {{el.hall_count}}>
@@ -39,7 +39,7 @@
         </select>
 
         <br>Количество прилавков:
-        <select name="stall_count">
+        <select name="stall_count" class="form-select form-select-sm">
             <option value="any" label = "Anything">
                 {% for el in table %}
             <option value={{el.stall_count}}  label = {{el.stall_count}}>
