@@ -2,10 +2,11 @@ from flask import render_template, request, redirect
 from connection_file import db, app
 from classes_file import Products
 
+
 @app.route('/products')
 def products():
     if "action" in request.args:
-        if request.args["action"] == "del": #для обратобки кнопки delete
+        if request.args["action"] == "del":  # для обратобки кнопки delete
             id_product = request.args['id']
             product = Products.query.get_or_404(id_product)
 
@@ -42,9 +43,13 @@ def products():
                 temp = db.session.execute(f"SELECT price_product from Products").fetchall()
                 price_product_lst = [temp[i][0] for i in range(len(temp))]
 
-            table = db.session.query(Products).filter(Products.id_product.in_(id_product_lst)).filter(Products.name_product.in_(name_product_lst))\
-                .filter(Products.type_product.in_(type_product_lst)).filter(Products.amount_product.in_(amount_product_lst))\
-                .filter(Products.id_shop.in_(id_shop_lst )).filter(Products.price_product.in_(price_product_lst ))
+            table = db.session.query(Products)\
+                .filter(Products.id_product.in_(id_product_lst))\
+                .filter(Products.name_product.in_(name_product_lst))\
+                .filter(Products.type_product.in_(type_product_lst))\
+                .filter(Products.amount_product.in_(amount_product_lst))\
+                .filter(Products.id_shop.in_(id_shop_lst))\
+                .filter(Products.price_product.in_(price_product_lst))
             return render_template("products.html", table=table)
         else:
             return redirect("/products")
@@ -52,11 +57,17 @@ def products():
         table = Products.query.order_by(Products.id_product).all()
         return render_template("products.html", table=table)
 
-@app.route('/product-choice', methods =['POST'])
+
+@app.route('/product-choice', methods=['POST'])
 def product_choice():
-    return redirect(f"/products?action=choice&id_product={request.form['id_product']}"
-                    f"&name_product={request.form['name_product']}&type_product={request.form['type_product']}"
-                    f"&amount_product={request.form['amount_product']}&id_shop={request.form['id_shop']}&price_product={request.form['price_product']}")
+    return redirect(f"/products?action=choice"
+                    f"&id_product={request.form['id_product']}"
+                    f"&name_product={request.form['name_product']}"
+                    f"&type_product={request.form['type_product']}"
+                    f"&amount_product={request.form['amount_product']}"
+                    f"&id_shop={request.form['id_shop']}"
+                    f"&price_product={request.form['price_product']}")
+
 
 @app.route('/products/<int:id>/edit', methods=['POST', 'GET'])
 def edit_product(id):
@@ -75,6 +86,7 @@ def edit_product(id):
     else:
         return render_template("product_edit.html", product=product)
 
+
 @app.route('/products/create', methods=['POST', 'GET'])
 def create_product():
     if request.method == "POST":
@@ -85,7 +97,7 @@ def create_product():
         price_product = request.form['price_product']
 
         products = Products(name_product=name_product, type_product=type_product, amount_product=amount_product,
-                           id_shop=id_shop, price_product=price_product)
+                            id_shop=id_shop, price_product=price_product)
 
         db.session.add(products)
         try:
