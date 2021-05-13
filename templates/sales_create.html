@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+Добавление продажи
+{% endblock %}
+{% block body %}
+<h1>Добавление Продажи</h1>
+<form action="/sales/create" method="post">
+    <input type="number" name="id_product" id="id_product" placeholder="ID продукта"><br>
+    <input type="number" name="id_employee" id="id_employee" placeholder="ID Сотрудника"><br>
+    <input type="number" name="id_shop" id="id_shop" placeholder="ID Магазина"><br>
+    <input type="number"   name="amount_sale" id="amount_sale" placeholder="Количество"><br>
+    <input type="number" name="date_sale" id="date_sale" placeholder="Дата продажи"><br>
+    <input type="text" name="name_buyer" id="name_buyer" placeholder="Покупатель"><br>
+    <input type="text" name="text_buyer" id="text_buyer" placeholder="Характеристика"><br>
+    <input type="submit" name="btn btn-success" value="Гатовенько">
+</form>
+{% endblock %}

@@ -46,3 +46,19 @@ class Employees(db.Model):
     def __repr__(self):
         return 'Employee %r' % self.id_employee
 
+class Sales(db.Model):
+    id_sale = db.Column(db.Integer, primary_key=True)
+    id_product = db.Column(db.Integer, nullable=False)
+    id_employee = db.Column(db.Integer, nullable=False)
+    id_shop = db.Column(db.Integer, nullable=False)
+    amount_sale = db.Column(db.Integer, nullable=False)
+    date_sale = db.Column(db.Integer, nullable=False)
+    name_buyer = db.Column(db.String(30), nullable=False)
+    text_buyer = db.Column(db.Text, nullable=False)
+
+    def __repr__(self):
+        return 'Sales %r' % self.id_sale
+
+
+
+
