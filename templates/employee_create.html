@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}
+Добавление Сотрудника
+{% endblock %}
+{% block body %}
+<h1>Добавление Сотрудника</h1>
+<form action="/employees/create" method="post">
+    <input type="text"   name="name_employee" id="name_employee" placeholder="Введите имя Сотрудника"><br>
+    <input type="number" name="id_shop" id="id_shop" placeholder="ID-магазина"><br>
+    <input type="number" name="salary" id="salary" placeholder="Зарплата"><br>
+    <input type="submit" name="btn btn-success" value="Гатовенько">
+</form>
+{% endblock %}

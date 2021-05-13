@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}
+Сотрудники
+{% endblock %}
+{% block body %}
+
+
+<form action="/employee-choice" method="POST" id="data">
+    ID-сотрудника:
+    <select name="id_employee" class="form-select form-select-sm">
+        <option value="any" label = "Anything">
+            {% for el in table %}
+        <option value={{el.id_employee}}  label = {{el.id_employee}}>
+            {% endfor %}
+    </select>
+
+    <br>Имя:
+    <select name="name_employee" class="form-select form-select-sm">
+        <option value="any" label = "Anything">
+            {% for el in table %}
+        <option value={{el.name_employee}}  label = {{el.name_employee}}>
+            {% endfor %}
+    </select>
+
+    <br>ID-Магазина:
+    <select name="id_shop" class="form-select form-select-sm">
+        <option value="any" label = "Anything">
+            {% for el in table %}
+        <option value={{el.id_shop}}  label = {{el.id_shop}}>
+            {% endfor %}
+    </select>
+
+    <br>Зарплата:
+    <select name="salary" class="form-select form-select-sm">
+        <option value="any" label = "Anything">
+            {% for el in table %}
+        <option value={{el.salary}}  label = {{el.salary}}>
+            {% endfor %}
+    </select><br>
+    <input type="submit" name="btn btn-success" value="Show"><br>
+</form>
+
+
+
+
+
+<table border="1" width="100%" cellpadding="5">
+    <tr>
+        <th>ID-сотрудника</th>
+        <th>Имя</th>
+        <th>ID-Магазина</th>
+        <th>Зарплата</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for el in table %}
+    <tr>
+        <td>{{ el.id_employee }}</td>
+        <td>{{ el.name_employee }}</td>
+        <td>{{ el.id_shop }}</td>
+        <td>{{ el.salary }}</td>
+        <td>
+            <a href="/employees?id={{el.id_employee}}&action=del" class="btn btn-danger">Delete</a>
+        </td>
+        <td>
+            <a href="/employees/{{el.id_employee}}/edit" class="btn btn-warning">Edit</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/employees/create" class="btn btn-success">Add</a>
+{% endblock %}

@@ -36,3 +36,13 @@ class Orders(db.Model):
 
     def __repr__(self):
         return 'Order %r' % self.id_order
+
+class Employees(db.Model):
+    id_employee = db.Column(db.Integer, primary_key=True)
+    name_employee = db.Column(db.String(30), nullable=False)
+    id_shop = db.Column(db.Integer, nullable=False)
+    salary = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return 'Employee %r' % self.id_employee
+
