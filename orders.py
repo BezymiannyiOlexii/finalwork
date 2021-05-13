@@ -54,7 +54,7 @@ def orders():
             table = db.session.execute(f"select * from Orders as O "
                                        f"INNER JOIN products as pr "
                                        f"ON O.id_product = pr.id_product"
-                                       f" and O.numb_order > {request.args['numb']}"
+                                       f" and O.amount_order > {request.args['numb']}"
                                        f" and type_product = '{request.args['type']}'").fetchall()
             return render_template("orders.html", table=table)
         else:
