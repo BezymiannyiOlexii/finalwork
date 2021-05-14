@@ -69,6 +69,7 @@ def edit_shop(id):
         shop.shops_area = request.form['shops_area']
         shop.hall_count = request.form['hall_count']
         shop.stall_count = request.form['stall_count']
+        shop.waste = request.form['waste']
         try:
             db.session.commit()
             return redirect('/shops')
@@ -86,8 +87,10 @@ def create_shop():
         shops_area = request.form['shops_area']
         hall_count = request.form['hall_count']
         stall_count = request.form['stall_count']
+        waste = request.form['waste']
 
-        shops = Shops(type_shop=type_shop, shops_area=shops_area, hall_count=hall_count, stall_count=stall_count)
+        shops = Shops(type_shop=type_shop, shops_area=shops_area, hall_count=hall_count,
+                      stall_count=stall_count, waste=waste)
 
         try:
             db.session.add(shops)

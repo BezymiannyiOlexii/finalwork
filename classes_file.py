@@ -8,7 +8,7 @@ class Shops(db.Model):
     shops_area = db.Column(db.Integer, nullable=False)
     hall_count = db.Column(db.Integer, default=1)
     stall_count = db.Column(db.Integer, default=1)
-    # date = db.Column(db.DataTime, default=datetime.utcnow)
+    waste = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
         return 'Shops %r' % self.id_shop

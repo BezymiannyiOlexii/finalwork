@@ -59,6 +59,7 @@
             <th>Площадь магазина</th>
             <th>Количество залов</th>
             <th>Количество прилавков</th>
+            <th>Расходы</th>
             <th></th>
             <th></th>
         </tr>
@@ -69,6 +70,7 @@
             <td>{{ el.shops_area }}</td>
             <td>{{ el.hall_count }}</td>
             <td>{{ el.stall_count }}</td>
+            <td>{{ el.waste }}</td>
             <td>
                 <a href="/shops?id={{el.id_shop}}&action=del" class="btn btn-danger">Delete</a>
             </td>
