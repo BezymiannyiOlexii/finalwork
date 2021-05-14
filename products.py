@@ -104,6 +104,7 @@ def create_product():
             db.session.commit()
             return redirect('/products')
         except:
-            return "Ошибочка"
+            db.session.rollback()
+            return db.session.commit()
     else:
         return render_template("products_create.html")
