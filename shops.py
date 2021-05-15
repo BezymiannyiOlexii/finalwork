@@ -5,52 +5,56 @@ from classes_file import Shops
 
 @app.route('/shops')
 def shops():
-    if "action" in request.args:
-        if request.args["action"] == "del": #для обратобки кнопки delete
-            id_shop = request.args['id']
-            shop = Shops.query.get_or_404(id_shop)
+    usr = db.session.execute(f"SELECT COUNT(id_user) from Users where access='Yes'").fetchall()
+    if usr[0][0] != 0:
+        if "action" in request.args:
+            if request.args["action"] == "del": #для обратобки кнопки delete
+                id_shop = request.args['id']
+                shop = Shops.query.get_or_404(id_shop)
 
-            try:
-                db.session.delete(shop)
-                db.session.commit()
+                try:
+                    db.session.delete(shop)
+                    db.session.commit()
+                    return redirect("/shops")
+                except:
+                    return "При удалении записи произошла ошибка"
+            elif request.args["action"] == "choice":
+                id_lst = [request.args['id_shop']]
+                type_shop_lst = [request.args['type_shop']]
+                shops_area_lst = [request.args['shops_area']]
+                hall_count_lst = [request.args['hall_count']]
+                stall_count_lst = [request.args['stall_count']]
+
+                if request.args['id_shop'] == "any":
+                    temp = db.session.execute(f"SELECT id_shop from Shops").fetchall()
+                    id_lst = [temp[i][0] for i in range(len(temp))]
+                if request.args['type_shop'] == "any":
+                    temp = db.session.execute(f"SELECT type_shop from Shops").fetchall()
+                    type_shop_lst = [temp[i][0] for i in range(len(temp))]
+                if request.args['shops_area'] == "any":
+                    temp = db.session.execute(f"SELECT shops_area from Shops").fetchall()
+                    shops_area_lst = [temp[i][0] for i in range(len(temp))]
+                if request.args['hall_count'] == "any":
+                    temp = db.session.execute(f"SELECT hall_count from Shops").fetchall()
+                    hall_count_lst = [temp[i][0] for i in range(len(temp))]
+                if request.args['stall_count'] == "any":
+                    temp = db.session.execute(f"SELECT stall_count from Shops").fetchall()
+                    stall_count_lst = [temp[i][0] for i in range(len(temp))]
+
+                table = db.session.query(Shops).filter(Shops.id_shop.in_(id_lst)).filter(Shops.type_shop.in_(type_shop_lst)).filter(Shops.shops_area.in_(shops_area_lst)).filter(Shops.hall_count.in_(hall_count_lst)).filter(Shops.stall_count.in_(stall_count_lst ))
+                return render_template("shops.html", table=table)
+
+
+            else:
                 return redirect("/shops")
-            except:
-                return "При удалении записи произошла ошибка"
-        elif request.args["action"] == "choice":
-            id_lst = [request.args['id_shop']]
-            type_shop_lst = [request.args['type_shop']]
-            shops_area_lst = [request.args['shops_area']]
-            hall_count_lst = [request.args['hall_count']]
-            stall_count_lst = [request.args['stall_count']]
-
-            if request.args['id_shop'] == "any":
-                temp = db.session.execute(f"SELECT id_shop from Shops").fetchall()
-                id_lst = [temp[i][0] for i in range(len(temp))]
-            if request.args['type_shop'] == "any":
-                temp = db.session.execute(f"SELECT type_shop from Shops").fetchall()
-                type_shop_lst = [temp[i][0] for i in range(len(temp))]
-            if request.args['shops_area'] == "any":
-                temp = db.session.execute(f"SELECT shops_area from Shops").fetchall()
-                shops_area_lst = [temp[i][0] for i in range(len(temp))]
-            if request.args['hall_count'] == "any":
-                temp = db.session.execute(f"SELECT hall_count from Shops").fetchall()
-                hall_count_lst = [temp[i][0] for i in range(len(temp))]
-            if request.args['stall_count'] == "any":
-                temp = db.session.execute(f"SELECT stall_count from Shops").fetchall()
-                stall_count_lst = [temp[i][0] for i in range(len(temp))]
-
-            table = db.session.query(Shops).filter(Shops.id_shop.in_(id_lst)).filter(Shops.type_shop.in_(type_shop_lst)).filter(Shops.shops_area.in_(shops_area_lst)).filter(Shops.hall_count.in_(hall_count_lst)).filter(Shops.stall_count.in_(stall_count_lst ))
-            return render_template("shops.html", table=table)
-
-
         else:
-            return redirect("/shops")
+            table = Shops.query.order_by(Shops.id_shop).all()
+            #table = Shops.query.filter_by(type_shop="Магазин").filter_by(id_shop=1).all()
+            #table = Shops.query.all()
+            #table = Shops.query.filter_by(Shops.id_shop in [1,2]).all()
+            return render_template("shops.html", table=table)
     else:
-        table = Shops.query.order_by(Shops.id_shop).all()
-        #table = Shops.query.filter_by(type_shop="Магазин").filter_by(id_shop=1).all()
-        #table = Shops.query.all()
-        #table = Shops.query.filter_by(Shops.id_shop in [1,2]).all()
-        return render_template("shops.html", table=table)
+        return render_template("denied.html")
 
 
 @app.route('/shop-choice', methods =['POST'])
